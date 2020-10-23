@@ -44,7 +44,8 @@
         "phpstan/phpstan-webmozart-assert": "^0.12",
         "symfony/serializer": "^4.4|^5.0",
         "sylius-labs/coding-standard": "^3.1.2",
-        "phpstan/phpstan": "^0.12"
+        "phpstan/phpstan": "^0.12",
+        "openlss/lib-array2xml": "^1.0"
     },
     "scripts": {
         "fix": [
@@ -59,7 +60,8 @@
         "symfony/dependency-injection": "4.1.0"
     },
     "suggest": {
-        "polishsymfonycommunity/symfony-mocker-container": "For mocking container services and external APIs"
+        "polishsymfonycommunity/symfony-mocker-container": "For mocking container services and external APIs",
+        "openlss/lib-array2xml": "Optional: required for Xml matching"
     },
     "autoload": {
         "psr-4": {

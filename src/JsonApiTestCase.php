@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace ApiTestCase;
 
 use Coduo\PHPMatcher\Matcher;
+use Coduo\PHPMatcher\PHPMatcher;
 use Symfony\Component\HttpFoundation\Response;
 
 abstract class JsonApiTestCase extends ApiTestCase
@@ -28,7 +29,9 @@ abstract class JsonApiTestCase extends ApiTestCase
 
     protected function buildMatcher(): Matcher
     {
-        return $this->matcherFactory->createMatcher();
+        $matcher = new PHPMatcher();
+
+        return $this->matcherFactory->createMatcher($matcher->backtrace());
     }
 
     /**
