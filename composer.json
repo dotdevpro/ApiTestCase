@@ -24,10 +24,10 @@
         }
     ],
     "require": {
-        "php": "^7.2",
+        "php": ">=7.4",
         "ext-json": "*",
 
-        "coduo/php-matcher": "^4.0",
+        "coduo/php-matcher": "^6.0",
         "doctrine/data-fixtures": "^1.2",
         "doctrine/doctrine-bundle": "^1.6|^2.0",
         "doctrine/orm": "^2.5",
@@ -74,7 +74,9 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "5.0-dev"
+            "dev-master": "6.0-dev"
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
