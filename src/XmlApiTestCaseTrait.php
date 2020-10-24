@@ -49,9 +49,6 @@ trait XmlApiTestCaseTrait
         parent::assertHeader($response, 'application/xml');
     }
 
-    /**
-     * @throws \Exception
-     */
     protected function assertXmlResponseContent(Response $actualResponse, string $filename): void
     {
         parent::assertResponseContent($this->prettifyXml($actualResponse->getContent() ?: ''), $filename, 'xml');

@@ -63,8 +63,6 @@ trait JsonApiTestCaseTrait
      * Asserts that response has JSON content matching the one given in file.
      *
      * @param Response|object $response
-     *
-     * @throws \Exception
      */
     protected function assertJsonResponseContent($response, string $filename): void
     {

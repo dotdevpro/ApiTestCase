@@ -20,13 +20,14 @@ use Symfony\Component\HttpFoundation\Response;
 abstract class JsonApiTestCase extends ApiTestCase
 {
     use JsonApiTestCaseTrait;
-    // /**
-    //  * @before
-    //  */
-    // public function setUpClient(): void
-    // {
-    //     $this->client = static::createClient([], ['HTTP_ACCEPT' => 'application/json']);
-    // }
+    
+    /**
+     * @before
+     */
+    public function setUpClient(): void
+    {
+        $this->client = static::createClient([], ['HTTP_ACCEPT' => 'application/json']);
+    }
 
     // protected function buildMatcher(): Matcher
     // {
