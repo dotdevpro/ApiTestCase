@@ -30,20 +30,22 @@ use Webmozart\Assert\Assert;
 
 abstract class ApiTestCase extends WebTestCase
 {
+    use ApiTestCaseTrait;
+
     /** @var KernelInterface */
     protected static $sharedKernel;
 
-    /** @var KernelBrowser|null */
-    protected $client;
+    // /** @var KernelBrowser|null */
+    // protected $client;
 
-    /** @var string|null */
-    protected $expectedResponsesPath;
+    // /** @var string|null */
+    // protected $expectedResponsesPath;
 
     /** @var string */
     protected $dataFixturesPath;
 
-    /** @var MatcherFactory */
-    protected $matcherFactory;
+    // /** @var MatcherFactory */
+    // protected $matcherFactory;
 
     /** @var LoaderInterface|null */
     private $fixtureLoader;
@@ -132,14 +134,14 @@ abstract class ApiTestCase extends WebTestCase
         return [];
     }
 
-    protected static function getKernelClass(): string
-    {
-        if (isset($_SERVER['KERNEL_CLASS'])) {
-            return '\\' . ltrim($_SERVER['KERNEL_CLASS'], '\\');
-        }
+    // protected static function getKernelClass(): string
+    // {
+    //     if (isset($_SERVER['KERNEL_CLASS'])) {
+    //         return '\\' . ltrim($_SERVER['KERNEL_CLASS'], '\\');
+    //     }
 
-        return parent::getKernelClass();
-    }
+    //     return parent::getKernelClass();
+    // }
 
     protected function purgeDatabase(): void
     {
@@ -149,55 +151,55 @@ abstract class ApiTestCase extends WebTestCase
         $this->getEntityManager()->clear();
     }
 
-    /**
-     * Gets service from DIC.
-     */
-    protected function get(string $id)
-    {
-        $client = $this->client;
-        Assert::notNull($client);
+    // /**
+    //  * Gets service from DIC.
+    //  */
+    // protected function get(string $id)
+    // {
+    //     $client = $this->client;
+    //     Assert::notNull($client);
 
-        $container = $client->getContainer();
-        Assert::notNull($container);
+    //     $container = $client->getContainer();
+    //     Assert::notNull($container);
 
-        return $container->get($id);
-    }
+    //     return $container->get($id);
+    // }
 
-    protected function assertResponseCode(Response $response, int $statusCode): void
-    {
-        self::assertEquals($statusCode, $response->getStatusCode(), $response->getContent() ?: '');
-    }
+    // protected function assertResponseCode(Response $response, int $statusCode): void
+    // {
+    //     self::assertEquals($statusCode, $response->getStatusCode(), $response->getContent() ?: '');
+    // }
 
-    protected function assertHeader(Response $response, string $contentType): void
-    {
-        $headerContentType = $response->headers->get('Content-Type');
-        Assert::string($headerContentType);
+    // protected function assertHeader(Response $response, string $contentType): void
+    // {
+    //     $headerContentType = $response->headers->get('Content-Type');
+    //     Assert::string($headerContentType);
 
-        self::assertStringContainsString(
-            $contentType,
-            $headerContentType
-        );
-    }
+    //     self::assertStringContainsString(
+    //         $contentType,
+    //         $headerContentType
+    //     );
+    // }
 
-    protected function assertResponseContent(string $actualResponse, string $filename, string $mimeType): void
-    {
-        $responseSource = $this->getExpectedResponsesFolder();
+    // protected function assertResponseContent(string $actualResponse, string $filename, string $mimeType): void
+    // {
+    //     $responseSource = $this->getExpectedResponsesFolder();
 
-        $contents = file_get_contents(PathBuilder::build($responseSource, sprintf('%s.%s', $filename, $mimeType)));
-        Assert::string($contents);
+    //     $contents = file_get_contents(PathBuilder::build($responseSource, sprintf('%s.%s', $filename, $mimeType)));
+    //     Assert::string($contents);
 
-        $expectedResponse = trim($contents);
+    //     $expectedResponse = trim($contents);
 
-        $matcher = $this->buildMatcher();
-        $actualResponse = trim($actualResponse);
-        $result = $matcher->match($actualResponse, $expectedResponse);
+    //     $matcher = $this->buildMatcher();
+    //     $actualResponse = trim($actualResponse);
+    //     $result = $matcher->match($actualResponse, $expectedResponse);
 
-        if (!$result) {
-            $diff = new \Diff(explode(\PHP_EOL, $expectedResponse), explode(\PHP_EOL, $actualResponse), []);
+    //     if (!$result) {
+    //         $diff = new \Diff(explode(\PHP_EOL, $expectedResponse), explode(\PHP_EOL, $actualResponse), []);
 
-            self::fail($matcher->getError() . \PHP_EOL . $diff->render(new \Diff_Renderer_Text_Unified()));
-        }
-    }
+    //         self::fail($matcher->getError() . \PHP_EOL . $diff->render(new \Diff_Renderer_Text_Unified()));
+    //     }
+    // }
 
     /**
      * @throws \Exception
@@ -303,42 +305,42 @@ abstract class ApiTestCase extends WebTestCase
         return $this->dataFixturesPath;
     }
 
-    private function getExpectedResponsesFolder(): string
-    {
-        if (null === $this->expectedResponsesPath) {
-            $this->expectedResponsesPath = isset($_SERVER['EXPECTED_RESPONSE_DIR']) ?
-                PathBuilder::build($this->getProjectDir(), $_SERVER['EXPECTED_RESPONSE_DIR']) :
-                PathBuilder::build($this->getCalledClassFolder(), '..', 'Responses');
-        }
+    // private function getExpectedResponsesFolder(): string
+    // {
+    //     if (null === $this->expectedResponsesPath) {
+    //         $this->expectedResponsesPath = isset($_SERVER['EXPECTED_RESPONSE_DIR']) ?
+    //             PathBuilder::build($this->getProjectDir(), $_SERVER['EXPECTED_RESPONSE_DIR']) :
+    //             PathBuilder::build($this->getCalledClassFolder(), '..', 'Responses');
+    //     }
 
-        return $this->expectedResponsesPath;
-    }
+    //     return $this->expectedResponsesPath;
+    // }
 
-    private function getCalledClassFolder(): string
-    {
-        $calledClass = get_called_class();
+    // private function getCalledClassFolder(): string
+    // {
+    //     $calledClass = get_called_class();
 
-        /** @var string $fileName */
-        $fileName = (new \ReflectionClass($calledClass))->getFileName();
-        $calledClassFolder = dirname($fileName);
+    //     /** @var string $fileName */
+    //     $fileName = (new \ReflectionClass($calledClass))->getFileName();
+    //     $calledClassFolder = dirname($fileName);
 
-        $this->assertSourceExists($calledClassFolder);
+    //     $this->assertSourceExists($calledClassFolder);
 
-        return $calledClassFolder;
-    }
+    //     return $calledClassFolder;
+    // }
 
-    private function assertSourceExists(string $source): void
-    {
-        if (!file_exists($source)) {
-            throw new \RuntimeException(sprintf('File %s does not exist', $source));
-        }
-    }
+    // private function assertSourceExists(string $source): void
+    // {
+    //     if (!file_exists($source)) {
+    //         throw new \RuntimeException(sprintf('File %s does not exist', $source));
+    //     }
+    // }
 
-    private function getProjectDir(): string
-    {
-        /** @var KernelInterface $kernel */
-        $kernel = $this->get('kernel');
+    // private function getProjectDir(): string
+    // {
+    //     /** @var KernelInterface $kernel */
+    //     $kernel = $this->get('kernel');
 
-        return $kernel->getProjectDir();
-    }
+    //     return $kernel->getProjectDir();
+    // }
 }

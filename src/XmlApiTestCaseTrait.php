@@ -15,7 +15,10 @@ namespace ApiTestCase;
 
 use Symfony\Component\HttpFoundation\Response;
 
-abstract class XmlApiTestCase extends ApiTestCase
+/**
+ * @mixin ApiTestCase
+ */
+trait XmlApiTestCaseTrait
 {
     use ApiTestCaseTrait;
 
