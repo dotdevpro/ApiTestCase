@@ -35,6 +35,8 @@ trait JsonApiTestCaseTrait
      * If filename is set, asserts that response content matches the one in given file.
      * If statusCode is set, asserts that response has given status code.
      *
+     * @param Response $response
+     *
      * @throws \Exception
      */
     protected function assertResponse($response, string $filename, int $statusCode = 200): void
@@ -48,6 +50,9 @@ trait JsonApiTestCaseTrait
         $this->assertJsonResponseContent($response, $filename);
     }
 
+    /**
+     * @param Response $response
+     */
     protected function assertJsonHeader($response): void
     {
         parent::assertHeader($response, 'application');
@@ -63,7 +68,7 @@ trait JsonApiTestCaseTrait
      */
     protected function assertJsonResponseContent($response, string $filename): void
     {
-        parent::assertResponseContent($this->prettifyJson($response->getContent()), $filename, 'json');
+        $this->assertResponseContent($this->prettifyJson($response->getContent()), $filename, 'json');
     }
 
     protected function prettifyJson($content): string
