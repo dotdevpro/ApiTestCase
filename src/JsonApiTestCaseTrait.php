@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace ApiTestCase;
 
 use Symfony\Component\HttpFoundation\Response;
-use Webmozart\Assert\Assert;
 
 /**
  * @mixin ApiTestCase
