@@ -1,10 +1,9 @@
-[![Build Status](https://travis-ci.org/dotdevru/ApiTestCase.svg?branch=master)](https://travis-ci.org/dotdevru/ApiTestCase) [![Coverage Status](https://coveralls.io/repos/github/dotdevru/ApiTestCase/badge.svg?branch=master)](https://coveralls.io/github/dotdevru/ApiTestCase?branch=master)
-
 ApiTestCase
 ===========
 
-[![Build Status](https://travis-ci.org/lchrusciel/ApiTestCase.svg?branch=master)](https://travis-ci.org/lchrusciel/ApiTestCase)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/lchrusciel/ApiTestCase/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/lchrusciel/ApiTestCase/?branch=master)
+[![Build Status](https://travis-ci.org/dotdevru/ApiTestCase.svg?branch=master)](https://travis-ci.org/dotdevru/ApiTestCase)
+[![Coverage Status](https://coveralls.io/repos/github/dotdevru/ApiTestCase/badge.svg?branch=master)](https://coveralls.io/github/dotdevru/ApiTestCase?branch=master)
+
 
 **ApiTestCase** is a PHPUnit TestCase that will make your life as a Symfony API developer much easier. It extends basic [Symfony](https://symfony.com/) WebTestCase with some cool features. 
 
