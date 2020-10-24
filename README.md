@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/dotdevru/ApiTestCase.svg?branch=master)](https://travis-ci.org/dotdevru/ApiTestCase) [![Coverage Status](https://coveralls.io/repos/github/dotdevru/ApiTestCase/badge.svg?branch=master)](https://coveralls.io/github/dotdevru/ApiTestCase?branch=master)
+
 ApiTestCase
 ===========
 
