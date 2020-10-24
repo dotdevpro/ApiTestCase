@@ -22,13 +22,13 @@ trait XmlApiTestCaseTrait
 {
     use ApiTestCaseTrait;
 
-    /**
-     * @before
-     */
-    public function setUpClient(): void
-    {
-        $this->client = static::createClient([], ['HTTP_ACCEPT' => 'application/xml']);
-    }
+    // /**
+    //  * @before
+    //  */
+    // public function setUpClient(): void
+    // {
+    //     $this->client = static::createClient([], ['HTTP_ACCEPT' => 'application/xml']);
+    // }
 
     /**
      * @throws \Exception

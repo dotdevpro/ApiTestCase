@@ -22,13 +22,13 @@ trait JsonApiTestCaseTrait
 {
     use ApiTestCaseTrait;
 
-    /**
-     * @before
-     */
-    public function setUpClient(): void
-    {
-        $this->client = static::createClient([], ['HTTP_ACCEPT' => 'application/json']);
-    }
+    // /**
+    //  * @before
+    //  */
+    // public function setUpClient(): void
+    // {
+    //     $this->client = static::createClient([], ['HTTP_ACCEPT' => 'application/json']);
+    // }
 
     /**
      * Asserts that response has JSON content.
