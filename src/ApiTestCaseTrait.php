@@ -73,12 +73,18 @@ trait ApiTestCaseTrait
         return $container->get($id);
     }
 
-    protected function assertResponseCode(Response $response, int $statusCode): void
+    /**
+     * @param Response|object $response
+     */
+    protected function assertResponseCode($response, int $statusCode): void
     {
         self::assertEquals($statusCode, $response->getStatusCode(), $response->getContent() ?: '');
     }
 
-    protected function assertHeader(Response $response, string $contentType): void
+    /**
+     * @param Response|object $response
+     */
+    protected function assertHeader($response, string $contentType): void
     {
         $headerContentType = $response->headers->get('Content-Type');
         Assert::string($headerContentType);
