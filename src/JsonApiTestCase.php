@@ -20,7 +20,7 @@ use Symfony\Component\HttpFoundation\Response;
 abstract class JsonApiTestCase extends ApiTestCase
 {
     use JsonApiTestCaseTrait;
-    
+
     /**
      * @before
      */
