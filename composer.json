@@ -1,5 +1,5 @@
 {
-    "name": "lchrusciel/api-test-case",
+    "name": "dotdev/api-test-case",
     "description": "Perfect PHPUnit TestCase for JSON/XML API TDD with Symfony.",
     "keywords": ["TDD", "Symfony", "PHPUnit", "Doctrine", "API", "JSON", "XML"],
     "type": "library",
