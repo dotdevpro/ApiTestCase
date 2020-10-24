@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace ApiTestCase;
 
 use Symfony\Component\HttpFoundation\Response;
+use Webmozart\Assert\Assert;
 
 /**
  * @mixin ApiTestCase
@@ -37,7 +38,7 @@ trait JsonApiTestCaseTrait
      *
      * @throws \Exception
      */
-    protected function assertResponse(Response $response, string $filename, int $statusCode = 200): void
+    protected function assertResponse($response, string $filename, int $statusCode = 200): void
     {
         if (isset($_SERVER['OPEN_ERROR_IN_BROWSER']) && true === $_SERVER['OPEN_ERROR_IN_BROWSER']) {
             $this->showErrorInBrowserIfOccurred($response);
@@ -48,7 +49,7 @@ trait JsonApiTestCaseTrait
         $this->assertJsonResponseContent($response, $filename);
     }
 
-    protected function assertJsonHeader(Response $response): void
+    protected function assertJsonHeader($response): void
     {
         parent::assertHeader($response, 'application');
         parent::assertHeader($response, 'json');
@@ -57,9 +58,11 @@ trait JsonApiTestCaseTrait
     /**
      * Asserts that response has JSON content matching the one given in file.
      *
+     * @param Response $response
+     *
      * @throws \Exception
      */
-    protected function assertJsonResponseContent(Response $response, string $filename): void
+    protected function assertJsonResponseContent($response, string $filename): void
     {
         parent::assertResponseContent($this->prettifyJson($response->getContent()), $filename, 'json');
     }
