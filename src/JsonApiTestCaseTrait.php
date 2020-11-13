@@ -22,14 +22,6 @@ trait JsonApiTestCaseTrait
 {
     use ApiTestCaseTrait;
 
-    // /**
-    //  * @before
-    //  */
-    // public function setUpClient(): void
-    // {
-    //     $this->client = static::createClient([], ['HTTP_ACCEPT' => 'application/json']);
-    // }
-
     /**
      * Asserts that response has JSON content.
      * If filename is set, asserts that response content matches the one in given file.
@@ -45,15 +37,18 @@ trait JsonApiTestCaseTrait
             $this->showErrorInBrowserIfOccurred($response);
         }
 
-        $this->assertResponseCode($response, $statusCode);
-        $this->assertJsonHeader($response);
+        if ($response instanceof Response) {
+            $this->assertResponseCode($response, $statusCode);
+            $this->assertJsonHeader($response);
+        }
+
         $this->assertJsonResponseContent($response, $filename);
     }
 
     /**
-     * @param Response|object $response
+     * @param Response $response
      */
-    protected function assertJsonHeader($response): void
+    protected function assertJsonHeader(Response $response): void
     {
         parent::assertHeader($response, 'application');
         parent::assertHeader($response, 'json');
