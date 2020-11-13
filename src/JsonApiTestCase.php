@@ -13,10 +13,6 @@ declare(strict_types=1);
 
 namespace ApiTestCase;
 
-use Coduo\PHPMatcher\Matcher;
-use Coduo\PHPMatcher\PHPMatcher;
-use Symfony\Component\HttpFoundation\Response;
-
 abstract class JsonApiTestCase extends ApiTestCase
 {
     use JsonApiTestCaseTrait;

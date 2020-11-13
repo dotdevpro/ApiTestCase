@@ -45,9 +45,6 @@ trait JsonApiTestCaseTrait
         $this->assertJsonResponseContent($response, $filename);
     }
 
-    /**
-     * @param Response $response
-     */
     protected function assertJsonHeader(Response $response): void
     {
         parent::assertHeader($response, 'application');
